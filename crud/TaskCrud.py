@@ -1,3 +1,5 @@
+from typing import List, Type
+
 from sqlalchemy.orm import Session
 
 from model.TaskModel import Task
@@ -11,6 +13,10 @@ class TaskCrud:
         db.commit()
         db.refresh(task)
         return task
+
+    @staticmethod
+    def get_all(db: Session) -> List[Type[Task]]:
+        return db.query(Task).all()
 
     @staticmethod
     def get_task_by_id(db: Session, task_id: int) -> Task | None:

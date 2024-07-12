@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from config import config
 from database import Base, engine
 from service.stat import stat_router
+from service.task import task_router
 from service.video import video_router
 
 Base.metadata.create_all(bind=engine)
@@ -21,6 +22,7 @@ app.add_middleware(
 
 app.include_router(video_router, prefix="/video")
 app.include_router(stat_router, prefix="/stat")
+app.include_router(task_router, prefix="/task")
 
 
 @app.get("/")
