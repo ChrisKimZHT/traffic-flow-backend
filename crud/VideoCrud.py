@@ -1,3 +1,5 @@
+from typing import List, Type
+
 from sqlalchemy.orm import Session
 
 from model.VideoModel import Video
@@ -12,6 +14,10 @@ class VideoCrud:
         db.commit()
         db.refresh(video)
         return video
+
+    @staticmethod
+    def get_all(db: Session) -> List[Type[Video]]:
+        return db.query(Video).all()
 
     @staticmethod
     def get_video_by_id(db: Session, video_id: int) -> Video | None:
