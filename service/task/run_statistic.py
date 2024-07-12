@@ -11,10 +11,10 @@ from crud.VideoCrud import VideoCrud
 from util.get_db import get_db
 from util.run_subprocess import run_subprocess_with_callback
 
-process_statistic_router = APIRouter()
+run_statistic_router = APIRouter()
 
 
-@process_statistic_router.get("/processStatistic")
+@run_statistic_router.get("/runStatistic")
 async def _(videoId: int, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     try:
         video = VideoCrud.get_video_by_id(db, videoId)
