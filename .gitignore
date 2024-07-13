@@ -4,6 +4,7 @@ alembic/
 runs/*
 !runs/stat/.gitkeep
 !runs/video/.gitkeep
+!runs/plate/.gitkeep
 
 ### Python template
 # Byte-compiled / optimized / DLL files

@@ -17,6 +17,13 @@ class Config(BaseSettings):
     yolov5_deepsort_result_json: str = "count_result.json"
     yolov5_deepsort_result_video: str = "result_video.mp4"
 
+    hyperlpr3_interpreter: str
+    hyperlpr3_path: str
+    hyperlpr3_main: str = "main.py"
+    hyperlpr3_result_json: str = "result.json"
+    hyperlpr3_boxed_path: str = "boxed"
+    hyperlpr3_crop_path: str = "crop"
+
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 
