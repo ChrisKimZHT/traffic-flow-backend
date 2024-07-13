@@ -19,11 +19,11 @@ class TaskCrud:
         return db.query(Task).all()
 
     @staticmethod
-    def get_by_id(db: Session, task_id: int) -> Task | None:
+    def get_by_id(db: Session, task_id: int) -> Type[Task] | None:
         return db.query(Task).filter(Task.task_id == task_id).first()
 
     @staticmethod
-    def update(db: Session, task: Task) -> Task:
+    def update(db: Session, task: Type[Task]) -> Type[Task]:
         db.commit()
         db.refresh(task)
         return task
