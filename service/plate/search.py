@@ -35,10 +35,13 @@ async def _(videoId: int, plate: str, db: Session = Depends(get_db)):
         result = []
         for key, value in data['result'].items():
             for ele in value:
+                ele['plate'] = key
                 ele['frame_time'] = ele['frame_id'] / data['video_fps']
                 result.append(ele)
     else:
         result = data['result'].get(plate, None)
+        for ele in result:
+            ele['plate'] = plate
         if result is None:
             result = []
 
