@@ -23,4 +23,12 @@ async def _(taskId: int, db: Session = Depends(get_db)):
     with open(output_file, "r", encoding="utf-8") as f:
         log = f.read()
 
-    return JSONResponse(status_code=200, content={"status": 0, "message": "OK", "data": log, "taskStatus": task.status})
+    return JSONResponse(status_code=200, content={"status": 0, "message": "OK", "data": {
+        "taskId": task.task_id,
+        "videoId": task.video_id,
+        "description": task.description,
+        "startTime": task.start_time,
+        "outputFile": task.output_file,
+        "status": task.status,
+        "log": log,
+    }})
