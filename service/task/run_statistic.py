@@ -55,11 +55,11 @@ async def _(videoId: int, background_tasks: BackgroundTasks, db: Session = Depen
             cb_video = VideoCrud.get_by_id(db, videoId)
             if return_value == 0:
                 cb_task.status = 2
-                TaskCrud.update(db, cb_task)
+                cb_video.stat_processed = 2
             else:
                 cb_task.status = 3
-                TaskCrud.update(db, cb_task)
-            cb_video.stat_processed = 2
+                cb_video.stat_processed = 0
+            TaskCrud.update(db, cb_task)
             VideoCrud.update(db, cb_video)
         except Exception as err:
             print(f"Database Error: {err}")
