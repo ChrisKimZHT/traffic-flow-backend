@@ -31,11 +31,20 @@ async def _(videoId: int, plate: str, db: Session = Depends(get_db)):
     with open(result_json, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    result = data['result'].get(plate, None)
-    if result is None:
+    if plate == "*":
         result = []
+        for key, value in data['result'].items():
+            for ele in value:
+                ele['frame_time'] = ele['frame_id'] / data['video_fps']
+                result.append(ele)
+    else:
+        result = data['result'].get(plate, None)
+        if result is None:
+            result = []
+
     for ele in result:
+        del ele['confidence']
         ele['frame_time'] = ele['frame_id'] / data['video_fps']
 
     return JSONResponse(status_code=200,
-                        content={"status": 0, "message": "Success", "result": result, "video": video.file_name})
+                        content={"status": 0, "message": "OK", "result": result, "video": video.file_name})
