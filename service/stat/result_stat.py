@@ -15,7 +15,7 @@ result_stat_router = APIRouter()
 @result_stat_router.get("/resultStat")
 async def _(videoId: int, db: Session = Depends(get_db)):
     try:
-        video = VideoCrud.get_video_by_id(db, videoId)
+        video = VideoCrud.get_by_id(db, videoId)
     except Exception as e:
         return JSONResponse(status_code=500, content={"status": 1, "message": f"Database Error: {e}"})
 

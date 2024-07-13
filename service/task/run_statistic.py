@@ -17,7 +17,7 @@ run_statistic_router = APIRouter()
 @run_statistic_router.get("/runStatistic")
 async def _(videoId: int, background_tasks: BackgroundTasks, db: Session = Depends(get_db)):
     try:
-        video = VideoCrud.get_video_by_id(db, videoId)
+        video = VideoCrud.get_by_id(db, videoId)
     except Exception as e:
         return JSONResponse(status_code=500, content={"status": 1, "message": f"Database Error: {e}"})
 
@@ -51,8 +51,8 @@ async def _(videoId: int, background_tasks: BackgroundTasks, db: Session = Depen
 
     def callback(return_value):
         try:
-            cb_task = TaskCrud.get_task_by_id(db, task_id)
-            cb_video = VideoCrud.get_video_by_id(db, videoId)
+            cb_task = TaskCrud.get_by_id(db, task_id)
+            cb_video = VideoCrud.get_by_id(db, videoId)
             if return_value == 0:
                 cb_task.status = 2
                 TaskCrud.update(db, cb_task)

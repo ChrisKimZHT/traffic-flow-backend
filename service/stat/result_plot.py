@@ -16,7 +16,7 @@ async def _(videoId: int, plotName: str, db: Session = Depends(get_db)):
         return JSONResponse(status_code=400, content={"status": 1, "message": "Invalid Parameters"})
 
     try:
-        video = VideoCrud.get_video_by_id(db, videoId)
+        video = VideoCrud.get_by_id(db, videoId)
     except Exception as e:
         return JSONResponse(status_code=500, content={"status": 1, "message": f"Database Error: {e}"})
 

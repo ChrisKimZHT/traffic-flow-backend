@@ -19,7 +19,7 @@ class TaskCrud:
         return db.query(Task).all()
 
     @staticmethod
-    def get_task_by_id(db: Session, task_id: int) -> Task | None:
+    def get_by_id(db: Session, task_id: int) -> Task | None:
         return db.query(Task).filter(Task.task_id == task_id).first()
 
     @staticmethod

@@ -20,7 +20,7 @@ class VideoCrud:
         return db.query(Video).all()
 
     @staticmethod
-    def get_video_by_id(db: Session, video_id: int) -> Video | None:
+    def get_by_id(db: Session, video_id: int) -> Video | None:
         return db.query(Video).filter(Video.video_id == video_id).first()
 
     @staticmethod
