@@ -15,6 +15,8 @@ async def _(db: Session = Depends(get_db)):
     except Exception as e:
         return JSONResponse(status_code=500, content={"status": 1, "message": f"Database Error: {e}"})
 
+    tasks = reversed(tasks)
+
     return JSONResponse(status_code=200, content={"status": 0, "message": "OK", "data": [{
         "taskId": task.task_id,
         "videoId": task.video_id,
