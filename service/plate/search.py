@@ -40,10 +40,10 @@ async def _(videoId: int, plate: str, db: Session = Depends(get_db)):
                 result.append(ele)
     else:
         result = data['result'].get(plate, None)
-        for ele in result:
-            ele['plate'] = plate
         if result is None:
             result = []
+        for ele in result:
+            ele['plate'] = plate
 
     for ele in result:
         del ele['confidence']
