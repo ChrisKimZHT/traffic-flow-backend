@@ -5,6 +5,7 @@ runs/*
 !runs/stat/.gitkeep
 !runs/video/.gitkeep
 !runs/plate/.gitkeep
+!runs/face/.gitkeep
 
 ### Python template
 # Byte-compiled / optimized / DLL files
