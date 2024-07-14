@@ -27,6 +27,7 @@ class Config(BaseSettings):
     face_detection_interpreter: str
     face_detection_path: str
     face_detection_main: str = "init_data.py"
+    face_detection_pred: str = "predict.py"
     face_detection_face_id: str = "face_id.txt"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
